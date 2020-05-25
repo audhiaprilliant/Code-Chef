@@ -2,41 +2,43 @@
 # source: https://www.codechef.com/LRNDSA01/problems/MULTHREE
 # author: audhiaprilliant
 
-# 1
-def constructNum(countNum,dNull,dOne):
+def sumNum(numInt):
+    sumReturn = 0
+    for i in range(len(str(numInt))):
+        sumReturn += int(str(numInt)[i])
+    return(sumReturn)
+
+dictMod = {1:4,2:12,3:18}
+for _ in range(int(input())):
+    [countNum,dNull,dOne] = list(map(int,input().strip().split()))
+    if countNum < 10:
+        lenListNum = countNum
+    else:
+        lenListNum = 20
+    
     listNum = [dNull,dOne]
-    while len(listNum) < countNum:
+    while len(listNum) < lenListNum:
         factorialTen = sum(listNum) % 10
         listNum.append(factorialTen)
-    intDone = ''.join([str(elem) for elem in listNum])
-    return(int(intDone))
-
-def multipleThree(countNum,dNull,dOne):
-    intNum = constructNum(countNum,dNull,dOne)
-    sumList = sum(list(map(int, str(intNum))))
-    return(sumList)
-
-for _ in range(int(input())):
-    [countNum,dNull,dOne] = list(map(int,input().strip().split()))
-    checkNum = multipleThree(countNum,dNull,dOne)
-    statThree = True
-    if checkNum % 3 != 0:
-        statThree = False
-    print(statThree)
-
-# 2
-def constructNum(countNum,dNull,dOne):
-    countStat = countNum
-    intNum = dNull + dOne
-    while countStat > 2:
-        intNum += intNum % 10
-        countStat -= 1
-    return(intNum)
-
-for _ in range(int(input())):
-    [countNum,dNull,dOne] = list(map(int,input().strip().split()))
-    checkNum = constructNum(countNum,dNull,dOne)
-    statThree = 'YES'
-    if checkNum % 3 != 0:
-        statThree = 'NO'
+    strNumCorrect = 0
+    statWhile = True
+    ind = 3
+    while statWhile and ind <= countNum:
+        if listNum[ind:(ind + 2)] == [0,0]:
+            strNumCorrect = sum(listNum[:ind])
+            statWhile = False
+        elif listNum[ind:(ind + 2)] == [6,2]:
+            lenStat = (countNum - (ind + 2))
+            if lenStat % 4 != 0:
+                strNumCorrect = sum(listNum[:(ind + 2)]) + sumNum(20 * (lenStat // 4)) + dictMod[lenStat % 4]
+            else:
+                strNumCorrect = sum(listNum[:(ind + 2)]) + sumNum(20 * (lenStat // 4))
+            statWhile = False
+        else:
+            strNumCorrect = sum(listNum[:ind])
+        ind += 1
+    statThree = 'NO'
+    modThree = strNumCorrect % 3
+    if modThree == 0:
+        statThree = 'YES'
     print(statThree)
