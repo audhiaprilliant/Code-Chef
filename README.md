@@ -15,4 +15,4 @@ CodeChef was created as a platform to help programmers make it big in the world 
 
 ### Beginner
 - [x] Coronavirus Spread [check](https://www.codechef.com/problems/COVID19)
-- [x] Multiple of 3 [check](https://www.codechef.com/LRNDSA01/problems/MULTHREE)
+- [x] Chef and Recipe [check](https://www.codechef.com/problems/CHEFRECP)
