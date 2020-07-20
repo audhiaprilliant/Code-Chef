@@ -4,13 +4,14 @@
 
 for _ in range(int(input())):
     numInput = int(input())
-    for _ in range(numInput):
-        listPenalty = [int(num) for num in str(input()]
-        timA = 0
-        timB = 0
-        iterNum = 0
-        for elem in range(len(listPenalty)):
-            if elem % 2:
-                timA += listPenalty[elem]
-            else:
-                timB += listPenalty[elem]
+    listPenalty = [int(num) for num in str(input())][:2 * numInput]
+    timA,timB = 0,0
+    iterNum = 0
+    for elem in range(1,len(listPenalty),2):
+        if (timA != ((numInput // 2) + 1)) & (timB != ((numInput // 2) + 1)):
+            timA += listPenalty[elem - 1]
+            timB += listPenalty[elem]
+            iterNum = (elem + 1)
+        else:
+            break
+    print(iterNum)
